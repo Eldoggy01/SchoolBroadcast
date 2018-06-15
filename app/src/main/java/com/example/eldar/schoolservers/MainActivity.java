@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button serviceButton;
     Button secondActivityButton;
+    Button thirdActivityButton;
 
 
     @Override
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(ActivityA.newIntent(MainActivity.this));
+            }
+        });
+        thirdActivityButton = findViewById(R.id.thirdButton);
+        thirdActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ActivityB.newIntent(MainActivity.this));
             }
         });
     }

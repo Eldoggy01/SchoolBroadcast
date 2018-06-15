@@ -8,9 +8,12 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.util.Log;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MyService extends Service {
@@ -34,20 +37,19 @@ public class MyService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Message msg = Message.obtain();
-                msg.obj = new Date().getTime();
-                msg.replyTo = messenger;
                 while (true) {
+                    Message msg = Message.obtain();
+                    msg.obj = new GregorianCalendar().getTime();
+                    msg.replyTo = messenger;
                     for (Messenger client : clients) {
                         try {
                             client.send(msg);
                         } catch (RemoteException e) {
 
                         }
-
                     }
                     try {
-                        Thread.sleep(8000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
 
                     }

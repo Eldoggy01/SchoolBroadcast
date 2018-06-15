@@ -13,29 +13,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class ActivityA extends AppCompatActivity {
-
-TextView textView;
+public class ActivityB extends AppCompatActivity {
+    TextView textView;
     private Messenger mService;
     final Messenger mMessenger = new Messenger(new IncomingHandler());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activity);
+        setContentView(R.layout.activity_b);
         init();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        bindService(MyService.newIntent(this),mServiceConnection,Context.BIND_AUTO_CREATE);
+        bindService(MyService.newIntent(this),mServiceConnection, Context.BIND_AUTO_CREATE);
 
     }
 
     public void init(){
-        textView = findViewById(R.id.textView3);
+        textView = findViewById(R.id.thirdActivityText);
     }
-
 
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -67,7 +65,7 @@ TextView textView;
     }
 
     public static final Intent newIntent(Context context) {
-        Intent intent = new Intent(context, ActivityA.class);
+        Intent intent = new Intent(context, ActivityB.class);
         return intent;
     }
 }
