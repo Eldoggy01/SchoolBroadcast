@@ -15,9 +15,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button serviceButton;
-    Button secondActivityButton;
-    Button thirdActivityButton;
+    Button sendButton;
 
 
     @Override
@@ -31,29 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void init() {
-        serviceButton = findViewById(R.id.serviceButton);
-        serviceButton.setOnClickListener(new View.OnClickListener() {
+        sendButton = findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //реализовать
-                startService(MyService.newIntent(MainActivity.this));
+                startService(MyIntentService.getIntentForSend(MainActivity.this,"B"));
             }
         });
 
-        secondActivityButton = findViewById(R.id.secondActivityButton);
-        secondActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(ActivityA.newIntent(MainActivity.this));
-            }
-        });
-        thirdActivityButton = findViewById(R.id.thirdButton);
-        thirdActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(ActivityB.newIntent(MainActivity.this));
-            }
-        });
+
     }
 
 }

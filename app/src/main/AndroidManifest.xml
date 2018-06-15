@@ -17,13 +17,8 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true" />
+        <service android:name=".MyIntentService" />
 
-        <activity android:name=".ActivityA" />
-        <activity android:name=".ActivityB"></activity>
     </application>
 
 </manifest>
