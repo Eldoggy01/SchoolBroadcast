@@ -9,17 +9,20 @@ import android.support.annotation.Nullable;
 import java.util.List;
 
 public class MyIntentService extends IntentService {
-
-    List <Class>
-
+    public static final String SEND_KEY = "DATA";
+    public static final String FILTER = "com.example.eldar.SEND_MESSAGES_FILTER";
+    public static final String RECEIVER_PERMISSION = "com.example.eldar.SEND_MESSAGES_PERMISSOIN";
     public MyIntentService(String name) {
         super(name);
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        String state = intent.getStringExtra("stateExtra");
-
+        StateManager stateManager = StateManager.getInstance();
+        stateManager.changeState();
+        Intent broadcastIntent = new Intent(FILTER);
+        broadcastIntent.putExtra(SEND_KEY,stateManager.getState());
+        sendOrderedBroadcast(broadcastIntent,RECEIVER_PERMISSION);
     }
 
     @Nullable
@@ -28,16 +31,12 @@ public class MyIntentService extends IntentService {
         return super.onBind(intent);
     }
 
-    public static final Intent getIntentForSend(Context context, String message){
-       Intent intent = newIntent(context);
-       intent.putExtra("stateExtra",message);
-       return intent;
 
-    }
-
-    private static final Intent newIntent(Context context){
+    public static final Intent newIntent(Context context) {
         Intent intent = new Intent(context, MyIntentService.class);
         return intent;
 
     }
+
+
 }
