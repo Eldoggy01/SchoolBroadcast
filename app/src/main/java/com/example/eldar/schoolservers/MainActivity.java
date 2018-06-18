@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mCustomBroadcastReceiver,mIntentFilter,"HH",null);
+        registerReceiver(mCustomBroadcastReceiver, mIntentFilter, Manifest.permission.Permission, null);
         Log.d("GG","Зарегали Ресивер");
     }
 

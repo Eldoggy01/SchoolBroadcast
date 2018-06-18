@@ -26,7 +26,7 @@ public class MyIntentService extends IntentService {
         Intent broadcastIntent = new Intent(FILTER);
         broadcastIntent.putExtra(SEND_KEY,stateManager.getState());
         broadcastIntent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-        sendBroadcast(broadcastIntent,"HH");
+        sendBroadcast(broadcastIntent, Manifest.permission.Permission);
         Log.d("GG","Отправили широковещательное сообщение");
     }
 
