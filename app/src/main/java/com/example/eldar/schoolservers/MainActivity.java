@@ -39,13 +39,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mCustomBroadcastReceiver,mIntentFilter,MyIntentService.RECEIVER_PERMISSION,null);
+        registerReceiver(mCustomBroadcastReceiver,mIntentFilter);
+        Log.d("GG","Зарегали Ресивер");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mCustomBroadcastReceiver);
+        Log.d("GG","Разрегали ресивер");
     }
 
     private void init() {
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onStatusChanged(Serializable newStatus) {
+            Log.d("GG","Зашли в onStatusChanged");
             mTextView.setText(newStatus.toString());
         }
     }
